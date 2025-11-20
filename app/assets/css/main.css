@@ -1,2 +1,11 @@
 @import "tailwindcss";
 @import "@nuxt/ui";
+
+:root {
+  --Base-White: white;
+  --container: 1248px;
+
+  font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+}
+
+/* max-w-(--container) m-auto px-4 */
