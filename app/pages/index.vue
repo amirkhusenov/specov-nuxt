@@ -4,6 +4,7 @@
     <main>
       <CategoryAdv />
       <CategoryCards />
+      <Banner />
     </main>
   </div>
 </template>
