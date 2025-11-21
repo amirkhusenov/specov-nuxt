@@ -51,7 +51,7 @@ const goNext = () => {
 			<swiper @swiper="onSwiper" :modules="[Navigation, Pagination]" :pagination="{ clickable: true }"
 				:slides-per-view="1" :centeredSlides="true" :loop="true" :space-between="8" :breakpoints="{
 					768: {spaceBetween: 32},
-					1025: { slidesPerView: 2, spaceBetween: 32, centeredSlides: false },
+					1024: { slidesPerView: 2, spaceBetween: 32, centeredSlides: false },
 				}" :navigation="false">
 
 				<swiper-slide v-for="(item, i) in slides" :key="i" class="rounded-2xl sm:p-8 p-5">
@@ -94,7 +94,7 @@ const goNext = () => {
 	</ClientOnly>
 </template>
 
-<style>
+<style scoped>
 .swiper {
 	max-width: 100%;
 	padding-bottom: 40px;

@@ -3,6 +3,7 @@
     <Header />
     <main>
       <CategoryAdv />
+      <CategoryCards />
     </main>
   </div>
 </template>
