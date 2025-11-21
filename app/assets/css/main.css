@@ -6,6 +6,31 @@
   --container: 1248px;
 
   font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+  --swiper-pagination-color: #0C8F61;
+  --color1: #053628;
+}
+
+.custom-swiper-button-prev,
+.custom-swiper-button-next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--Base-White);
+  border: 1px solid #D5D7DA;
+  cursor: pointer;
+}
+
+.custom-swiper-button-prev svg,
+.custom-swiper-button-next svg {
+  width: 14px;
+  height: auto;
 }
 
 /* max-w-(--container) m-auto px-4 */
