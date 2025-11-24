@@ -22,7 +22,7 @@ const items = [
 
 <template>
 
-  <div class="max-w-(--container) m-auto px-0 sm:px-4 pb-20">
+  <div class="max-w-(--container) m-auto px-0 sm:px-4">
 
     <div class="relative p-5 sm:p-[50px] rounded-xl bg-[linear-gradient(90deg,#053628_0%,#447869_100%)]">
       <img class="hidden xl:block absolute bottom-0 right-0" src="/image/banner/Image.png" alt="Man">

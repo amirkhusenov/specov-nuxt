@@ -28,7 +28,7 @@ const slides = [
 
 <template>
 	<ClientOnly>
-		<section class="relative overflow-hidden max-w-(--container) px-4 m-auto pb-6 sm:pb-20">
+		<div class="relative overflow-hidden max-w-(--container) px-4 m-auto pb-6 sm:pb-20">
 
 			<swiper :slides-per-view="1" :centeredSlides="true" :loop="true" :space-between="8" :breakpoints="{
 				577: { slidesPerView: 1, spaceBetween: 32 },
@@ -47,7 +47,7 @@ const slides = [
 				</swiper-slide>
 
 			</swiper>
-		</section>
+		</div>
 	</ClientOnly>
 </template>
 
