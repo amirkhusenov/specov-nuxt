@@ -153,6 +153,11 @@ const gardenProducts = [
         </SectionContainer>
       </Section>
 
+      <Section>
+        <SectionContainer>
+          <Feedback />
+        </SectionContainer>
+      </Section>
     </main>
 
   </div>
