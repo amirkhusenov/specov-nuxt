@@ -4,7 +4,7 @@
 
 
 <template>
-  <section class="my-(--section-indent)">
+  <section class="my-(--section-indent) relative overflow-hidden">
     <slot />
   </section>
 </template>
