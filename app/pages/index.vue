@@ -132,6 +132,18 @@ const gardenProducts = [
       <Section>
         <SectionContainer>
           <SectionHeader>
+            <SectionTitle text="Популярные бренды" />
+            <SectionButton text="Смотреть всё" path="/" />
+          </SectionHeader>
+
+          <Brands />
+
+        </SectionContainer>
+      </Section>
+
+      <Section>
+        <SectionContainer>
+          <SectionHeader>
             <SectionTitle text="Для сада" />
             <SectionButton text="Смотреть всё" path="/" />
           </SectionHeader>
