@@ -158,6 +158,13 @@ const gardenProducts = [
           <Feedback />
         </SectionContainer>
       </Section>
+
+      <Section>
+        <SectionContainer>
+          <Stores />
+        </SectionContainer>
+      </Section>
+
     </main>
 
   </div>
