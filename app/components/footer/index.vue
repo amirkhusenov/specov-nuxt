@@ -1,6 +1,18 @@
 <script lang="ts">
 import SectionContainer from '@/components/section/Container.vue'
+import FooterLogo from '@/components/footer/Logo.vue'
+import FooterMenu from '@/components/footer/Menu.vue'
+import FooterLinks from '@/components/footer/Links.vue'
 
+export default {
+  name: 'Footer',
+  components: {
+    SectionContainer,
+    FooterLogo,
+    FooterMenu,
+    FooterLinks
+  }
+}
 </script>
 
 <template>
