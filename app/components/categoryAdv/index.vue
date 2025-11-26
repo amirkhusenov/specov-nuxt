@@ -46,7 +46,7 @@ const goNext = () => {
 
 <template>
 	<ClientOnly>
-		<div class="relative overflow-hidden max-w-(--container) px-4 m-auto pt-6 pb-5">
+		<div class="relative max-w-(--container) px-4 m-auto pt-6 pb-5">
 
 			<swiper @swiper="onSwiper" :modules="[Navigation, Pagination]" :pagination="{ clickable: true }"
 				:slides-per-view="1" :centeredSlides="true" :loop="true" :space-between="8" :breakpoints="{
@@ -105,10 +105,12 @@ const goNext = () => {
 }
 
 .custom-swiper-button-prev {
+	top: 46%;
 	left: -8px;
 }
 
 .custom-swiper-button-next {
+	top: 46%;
 	right: -8px;
 }
 

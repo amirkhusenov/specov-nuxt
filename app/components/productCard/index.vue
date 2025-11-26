@@ -40,7 +40,7 @@ const props = defineProps<Props>()
       <div class="min-h-10">
         <p class="text-sm text-gray-600 line-clamp-2 overflow-ellipsis">{{ props.item.title }}</p>
       </div>
-      <div class="gap-4 font-semibold flex flex-wrap sm:flex-nowrap justify-center pt-5 items-center">
+      <div class="w-full gap-4 font-semibold flex flex-wrap sm:flex-nowrap justify-center pt-5 items-center">
         <ProductCardBasket />
         <ProductCardCounter />
       </div>
