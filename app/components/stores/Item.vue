@@ -18,7 +18,7 @@ const props = defineProps<Props>()
 <template>
   <div
     :class="props.isActive ? 'border-green-600' : '' "
-    class="max-w-[488px] gap-3 flex justify-center flex-col items-start border border-solid p-6 rounded-2xl">
+    class="w-full gap-3 flex justify-center flex-col items-start border border-solid p-6 rounded-2xl">
     <div class="text-zinc-950 leading-6 self-stretch">
       {{ props.address }}
     </div>
