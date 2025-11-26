@@ -35,4 +35,13 @@
   height: auto;
 }
 
-/* max-w-(--container) m-auto px-4 */
+
+/* 12px text-xs
+14px text-sm
+16px text-base
+18px text-lg */
+
+/* leading-3 12px
+leading-4 (16px)
+leading-5 (20px)
+leading-6 (24px) */

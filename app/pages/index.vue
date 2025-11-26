@@ -167,5 +167,7 @@ const gardenProducts = [
 
     </main>
 
+    <Footer />
+
   </div>
 </template>
