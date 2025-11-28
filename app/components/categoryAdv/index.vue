@@ -20,6 +20,24 @@ const slides = [
 		text: 'Более 5 000 товаров для разных задач',
 		textButton: 'Взять в аренду',
 	},
+		{
+		image: '/image/Image-1.png',
+		title: 'Всё для сада',
+		textButton: 'Смотреть раздел',
+		theme: 'dark',
+	},
+	{
+		image: '/image/Image-2.png',
+		title: 'Аренда инструмента',
+		text: 'Более 5 000 товаров для разных задач',
+		textButton: 'Взять в аренду',
+	},
+		{
+		image: '/image/Image-1.png',
+		title: 'Всё для сада',
+		textButton: 'Смотреть раздел',
+		theme: 'dark',
+	},
 	{
 		image: '/image/Image-2.png',
 		title: 'Аренда инструмента',
@@ -49,9 +67,13 @@ const goNext = () => {
 		<div class="relative max-w-(--container) px-4 m-auto pt-6 pb-5">
 
 			<swiper @swiper="onSwiper" :modules="[Navigation, Pagination]" :pagination="{ clickable: true }"
-				:slides-per-view="1" :centeredSlides="true" :loop="true" :space-between="8" :breakpoints="{
+				:slides-per-view="1" 
+				:centeredSlides="true" 
+				:loop="true" 
+				:space-between="8" 
+				:breakpoints="{
 					768: {spaceBetween: 32},
-					1024: { slidesPerView: 2, spaceBetween: 32, centeredSlides: false },
+					769: { slidesPerView: 2, spaceBetween: 32, centeredSlides: false },
 				}" :navigation="false">
 
 				<swiper-slide v-for="(item, i) in slides" :key="i" class="rounded-2xl sm:p-8 p-5">
