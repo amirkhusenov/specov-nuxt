@@ -194,7 +194,7 @@ const goNext = () => {
   }
 
   .swiper-slide div {
-    height: 40px;
+    height: 52px;
     padding: 0;
   }
 

@@ -7,9 +7,15 @@
   --section-indent: 80px;
 
   font-family: Inter, ui-sans-serif, system-ui, sans-serif;
-  --swiper-pagination-color: #0C8F61;
+  --swiper-pagination-color: #0c8f61;
   --color1: #053628;
-  --border: #D5D7DA;
+  --border: #d5d7da;
+}
+
+@media (max-width: 576px) {
+  :root {
+    --section-indent: 24px;
+  }
 }
 
 .custom-swiper-button-prev,
@@ -25,7 +31,7 @@
   height: 44px;
   border-radius: 50%;
   background: var(--Base-White);
-  border: 1px solid #D5D7DA;
+  border: 1px solid #d5d7da;
   cursor: pointer;
 }
 
@@ -34,7 +40,6 @@
   width: 14px;
   height: auto;
 }
-
 
 /* 12px text-xs
 14px text-sm
