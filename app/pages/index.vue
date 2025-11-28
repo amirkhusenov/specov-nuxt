@@ -96,7 +96,7 @@ const gardenProducts = [
 
 
 <template>
-  <div class="[background:var(--Base-White)]">
+  <div class="overflow-hidden [background:var(--Base-White)]">
 
     <Header />
 

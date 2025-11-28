@@ -52,13 +52,13 @@ const menu = [
 
     <!-- show more categories -->
     <div class="flex relative w-0 flex-col items-end cursor-pointer">
-      <div class="items-end flex absolute -left-24 z-0 w-16 inset-y-0">
+      <div :class="[isShift ? 'hidden' : '']" class="items-end flex absolute -left-24 z-0 w-16 inset-y-0">
         <div class="bg-linear-to-r from-white to-transparent h-full w-full -scale-x-100"></div>
       </div>
       <button @click="shiftMenu" :class="[isShift ? 'rotate-180' : '']"
-        class="z-2 transition border-zinc-300 p-[5px] flex justify-center h-8 w-8 flex-col bg-white items-center border border-solid rounded-full">
+        class="z-2 transition border-zinc-300 p-[5px] flex justify-center h-8 w-8 flex-col bg-white items-center border border-solid rounded-full cursor-pointer">
         <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5">
-          <path d="M7.5 15L12.5 10L7.5 5" stroke="#097350" stroke-width="1.66667" stroke-linecap="round"
+          <path d="M7.5 15L12.5 10L7.5 5" stroke="#535862" stroke-width="1.66667" stroke-linecap="round"
             stroke-linejoin="round"></path>
         </svg>
       </button>

@@ -10,7 +10,7 @@
     <div
       class="w-full font-semibold leading-6 text-gray-600 flex flex-wrap justify-center self-stretch gap-x-5 gap-y-3 items-center">
 
-      <div class="border-zinc-300 flex pr-3 self-stretch border-r border-solid">
+      <div class="border-zinc-300 flex pr-4 self-stretch border-r border-solid">
         <div class="gap-2 leading-5 text-sm flex justify-center">
 
           <!-- stores -->
