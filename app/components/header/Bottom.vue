@@ -37,7 +37,7 @@
         </div>
       </div>
 
-      <HeaderSlider />
+      <HeaderMenu />
 
     </div>
 
