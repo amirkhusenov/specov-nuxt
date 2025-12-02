@@ -42,16 +42,18 @@ const menu = [
 
 <template>
   <!-- category slider -->
-  <div class="flex items-center overflow-hidden">
+  <div class="flex items-center">
 
-    <div :class="[isShift ? '-translate-x-16' : '']" class="flex gap-x-5 transition">
+    <!-- <div :class="[isShift ? '-translate-x-16' : '']" class="flex gap-x-5 transition">
       <a v-for="item in menu" :href="item.src" class="text-gray-600 hover:text-(--Brand-700)">
         {{ item.name }}
       </a>
-    </div>
+    </div> -->
+
+    <HeaderMenuSlider />
 
     <!-- show more categories -->
-    <div class="flex relative w-0 flex-col items-end cursor-pointer">
+    <!-- <div class="flex relative w-0 flex-col items-end cursor-pointer">
       <div :class="[isShift ? 'hidden' : '']" class="items-end flex absolute -left-24 z-0 w-16 inset-y-0">
         <div class="bg-linear-to-r from-white to-transparent h-full w-full -scale-x-100"></div>
       </div>
@@ -64,7 +66,7 @@ const menu = [
         </svg>
       </button>
 
-    </div>
+    </div> -->
 
   </div>
 </template>
