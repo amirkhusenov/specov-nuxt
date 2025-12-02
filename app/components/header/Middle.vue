@@ -30,7 +30,7 @@ const buttons = [
 
     <!-- buttons -->
     <a v-for="item in buttons" :href="item.src"
-      class="hidden lg:flex border-zinc-300 p-[11px] justify-spacse-between h-11 w-11 flex-col bg-white items-center border border-solid rounded-lg"
+      class="hidden lg:flex border-zinc-300 p-[11px] justify-spacse-between h-11 w-11 flex-col bg-white hover:bg-gray-300 transition items-center border border-solid rounded-lg"
       caption="Корзина">
       <span class="h-5 w-5">
         <component :is="item.icon" />

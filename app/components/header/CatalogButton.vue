@@ -8,7 +8,7 @@ const props = defineProps<Props> ()
 <template>
   <!-- catalog -->
   <div :class="props.class"
-    class="bg-[burlywood] gap-2 flex justify-center items-center py-2.5 px-4 rounded-lg cursor-pointer">
+    class="bg-[#C3974C] hover:bg-[#D3B579] transition gap-2 flex justify-center items-center py-2.5 px-4 rounded-lg cursor-pointer">
     <div class="h-5 w-5"><svg width="100%" height="100%" style="overflow: visible;" preserveAspectRatio="none"
         viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path

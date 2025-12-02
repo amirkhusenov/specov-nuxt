@@ -9,7 +9,7 @@ const props = defineProps<Props>()
   <div :class="props.class">
     <UModal>
       <UButton
-        class="bg-neutral-100 hover:bg-neutral-200 active:bg-neutral-300 border-zinc-300 py-[9px] px-[15px] gap-2 flex justify-center items-center border border-solid rounded-lg cursor-pointer">
+        class="bg-gray-100 hover:bg-gray-200 active:bg-neutral-300 border-zinc-300 py-[9px] px-[15px] gap-2 flex justify-center items-center border border-solid rounded-lg cursor-pointer">
         <template #leading>
           <span class="h-5 w-5">
             <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
