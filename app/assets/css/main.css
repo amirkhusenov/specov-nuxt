@@ -4,8 +4,9 @@
 :root {
   --Base-White: white;
   --Brand-700: #097350;
-
-
+  --Brand-600: #0C8F61;
+  --Brand-950: #053628;
+  
   --container: 1248px;
   --section-indent: 80px;
 
@@ -36,11 +37,17 @@
   background: var(--Base-White);
   border: 1px solid #d5d7da;
   cursor: pointer;
+  transition: .2s;
+}
+
+.custom-swiper-button-prev:hover,
+.custom-swiper-button-next:hover {
+  background: #d1d5db;
 }
 
 .custom-swiper-button-prev svg,
 .custom-swiper-button-next svg {
-  width: 14px;
+  width: 16px;
   height: auto;
 }
 

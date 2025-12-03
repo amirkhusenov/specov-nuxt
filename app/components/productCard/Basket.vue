@@ -4,7 +4,7 @@
 
 
 <template>
-  <button class="w-full bg-emerald-950 gap-1.5 items-center justify-center flex py-2.5 px-3.5 rounded-lg cursor-pointer">
+  <button class="w-full bg-emerald-950 hover:bg-(--Brand-700) transition gap-1.5 items-center justify-center flex py-2.5 px-3.5 rounded-lg cursor-pointer">
     <div class="h-5 w-5"><svg width="100%" height="100%" style="overflow: visible;" preserveAspectRatio="none"
         viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
         <g clip-path="url(#clip0_14880_4157)" data-v-inspector="src/components/assets/ShoppingCart2.vue:14:4">

@@ -36,7 +36,7 @@ const slides = [
 				1025: { slidesPerView: 4, spaceBetween: 32, centeredSlides: false },
 			}" :navigation="false">
 
-				<swiper-slide v-for="(item, i) in slides" :key="i" :class="`slide-${i}`" class="rounded-2xl">
+				<swiper-slide v-for="(item, i) in slides" :key="i" :class="`slide-${i}`" class="rounded-2xl overflow-hidden">
 					<img :src="item.image" :alt="item.title" class="absolute bottom-0 -z-1" />
 					<div class="flex flex-col h-full">
 						<div class="text-[#0A0D12] font-sans font-semibold sm:text-xl tex-sm leading-5 sm:leading-[30px] tracking-[0%]">
@@ -72,8 +72,17 @@ const slides = [
 	background: #EEEEEE;
 }
 
+.slide-0 img {
+	right: 20px;
+}
+
 .slide-1 {
 	background: #F6F4E8;
+}
+
+.slide-1 img {
+	right: 20px;
+	bottom: 12px;
 }
 
 .slide-2 {

@@ -89,7 +89,7 @@ const goNext = () => {
 						</p>
 						<div class="flex items-end mt-auto">
 							<button
-								class="cursor-pointer text-emerald-950 rounded-[10px] bg-white text-center text-sm leading-5 sm:leading-7 font-semibold sm:text-lg py-2 px-4 sm:py-4 sm:px-6">
+								class="cursor-pointer text-emerald-950 rounded-[10px] bg-white hover:bg-gray-300 transition text-center text-sm leading-5 sm:leading-7 font-semibold sm:text-lg py-2 px-4 sm:py-4 sm:px-6">
 								{{ item.textButton }}
 							</button>
 						</div>

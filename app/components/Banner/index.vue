@@ -27,10 +27,10 @@ const items = [
     <div class="relative p-5 sm:p-[50px] rounded-xl bg-[linear-gradient(90deg,#053628_0%,#447869_100%)]">
       <img class="hidden xl:block absolute bottom-0 right-0" src="/image/banner/Image.png" alt="Man">
 
-      <div class="flex flex-wrap max-w-[530px] gap-[30px] sm:gap-[70px] justify-between">
+      <div class="flex flex-wrap max-w-[560px] gap-[30px] sm:gap-[70px] justify-between">
 
-        <div v-for="item in items" class="grid gap-[30px] max-w-[140px] sm:max-w-[226px]">
-          <img :src="item.src" :alt="item.title">
+        <div v-for="item in items" class="grid gap-6 max-w-[140px] sm:max-w-[230px]">
+          <img class="w-8 h-8" :src="item.src" :alt="item.title">
           <p class="font-sans font-medium text-sm sm:text-base leading-6 tracking-[0%]">
             {{ item.title }}
           </p>
