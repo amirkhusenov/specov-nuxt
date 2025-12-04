@@ -101,7 +101,7 @@ const gardenProducts = [
     <Header />
 
     <main>
-      <CategoryAdv />
+      <!-- <CategoryAdv />
       <CategoryCards />
       <Banner />
 
@@ -151,7 +151,7 @@ const gardenProducts = [
           <ProductCardSlider :items="gardenProducts" />
 
         </SectionContainer>
-      </Section>
+      </Section> -->
 
       <Feedback />
 

@@ -9,8 +9,9 @@ const schema = v.object({
   ),
   phone: v.pipe(
     v.string(),
-    v.minLength(1, 'Телефон обязателен'),
-    v.regex(/^\+?[\d\s\-\(\)]{10,}$/, 'Неверный формат телефона')
+    v.nonEmpty('Телефон обязателен'),
+    // Проверяем, что это российский номер (11 цифр, начинается с 7 или 8)
+    v.regex(/^[78]\d{10}$/, 'Неверный формат телефона')
   )
 })
 
@@ -27,7 +28,6 @@ const form = ref()
 // Вычисляемое свойство для проверки валидности
 const isFormValid = computed(() => {
   if (!form.value) return false
-
   const errors = form.value.errors
   return !errors || Object.keys(errors).length === 0
 })
@@ -42,7 +42,6 @@ async function onSubmit(event: FormSubmitEvent<Schema>) {
     toast.add({
       title: 'Ошибка',
       description: 'Пожалуйста, исправьте ошибки в форме',
-      // color: 'red' 
     })
     return
   }
@@ -54,44 +53,58 @@ async function onSubmit(event: FormSubmitEvent<Schema>) {
   })
   console.log(event.data)
 }
-
 </script>
 
 <template>
-
-  <UForm ref="form" :schema="schema" :state="state"
-    class="flex flex-col sm:flex-row lg:block lg:max-w-[478px] w-full gap-4" @submit="onSubmit">
-
-    <UFormField label="Имя" name="name"
-      :ui="{ label: 'w-full lg:pt-[26px] text-gray-700 leading-5 font-medium text-sm' }">
-      <UInput v-model="state.name" :ui="{
-        base: 'shadow-none w-full h-11 !bg-white text-gray-500 placeholder-gray-400 border-transparent rounded-lg py-2.5 px-3.5 focus:outline-none ring-0 appearance-none',
-        root: 'w-full'
-      }" />
+  <UForm 
+    ref="form" 
+    :schema="schema" 
+    :state="state"
+    class="flex flex-col sm:flex-row lg:block lg:max-w-[478px] w-full gap-4" 
+    @submit="onSubmit"
+  >
+    <UFormField 
+      label="Имя" 
+      name="name"
+      :ui="{ label: 'w-full lg:pt-[26px] text-gray-700 leading-5 font-medium text-sm' }"
+    >
+      <UInput 
+        v-model="state.name" 
+        :ui="{
+          base: 'shadow-none w-full h-11 !bg-white text-gray-500 placeholder-gray-400 border-transparent rounded-lg py-2.5 px-3.5 focus:outline-none ring-0 appearance-none',
+          root: 'w-full'
+        }" 
+        placeholder="Ваше имя"  
+      />
     </UFormField>
 
-    <UFormField label="Номер телефона" name="phone"
-      :ui="{ label: 'w-full lg:pt-[16px] text-gray-700 leading-5 font-medium text-sm' }">
-      <UInput v-model="state.phone" type="tel" :ui="{
-        base: 'shadow-none w-full h-11 !bg-white text-gray-500 placeholder-gray-400 border-transparent rounded-lg py-2.5 px-3.5 focus:outline-none ring-0 appearance-none',
-        root: 'w-full'
-      }" />
+    <UFormField 
+      label="Номер телефона" 
+      name="phone"
+      :ui="{ label: 'w-full lg:pt-[16px] text-gray-700 leading-5 font-medium text-sm' }"
+    >
+      <!-- Заменили UInput на ваш кастомный компонент -->
+      <FeedbackPhoneInput 
+        v-model="state.phone"
+        :ui="{
+          base: 'shadow-none w-full h-11 !bg-white text-gray-500 placeholder-gray-400 border-transparent rounded-lg py-2.5 px-3.5 focus:outline-none ring-0 appearance-none',
+          root: 'w-full'
+        }"
+      />
     </UFormField>
 
-    <UButton type="submit" :ui="{
-      base: `sm:max-w-[170px] cursor-pointer flex items-center justify-center self-end w-full lg:w-auto lg:mt-4 px-[18px] text-center text-white leading-6 font-semibold py-2.5 rounded-lg transition-all ${!isFormValid && isFormDirty
-          ? 'bg-gray-400 cursor-not-allowed self-center'
-          : isFormValid
-            ? 'bg-emerald-950'
-            : 'bg-gray-400 cursor-not-allowed self-center active:bg-gray-400 hover:bg-gray-400'
-        }`
-    }">
+    <UButton 
+      type="submit" 
+      :ui="{
+        base: `sm:max-w-[170px] cursor-pointer flex items-center justify-center self-end w-full lg:w-auto lg:mt-4 px-[18px] text-center text-white leading-6 font-semibold py-2.5 rounded-lg transition-all ${!isFormValid && isFormDirty
+            ? 'bg-gray-400 cursor-not-allowed self-center'
+            : isFormValid
+              ? 'bg-emerald-950'
+              : 'bg-gray-400 cursor-not-allowed self-center active:bg-gray-400 hover:bg-gray-400'
+          }`
+      }"
+    >
       Заказать звонок
     </UButton>
-
   </UForm>
-
 </template>
-
-
-<style scoped></style>
