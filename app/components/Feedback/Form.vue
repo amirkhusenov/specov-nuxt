@@ -83,7 +83,6 @@ async function onSubmit(event: FormSubmitEvent<Schema>) {
       name="phone"
       :ui="{ label: 'w-full lg:pt-[16px] text-gray-700 leading-5 font-medium text-sm' }"
     >
-      <!-- Заменили UInput на ваш кастомный компонент -->
       <FeedbackPhoneInput 
         v-model="state.phone"
         :ui="{
@@ -96,11 +95,11 @@ async function onSubmit(event: FormSubmitEvent<Schema>) {
     <UButton 
       type="submit" 
       :ui="{
-        base: `sm:max-w-[170px] cursor-pointer flex items-center justify-center self-end w-full lg:w-auto lg:mt-4 px-[18px] text-center text-white leading-6 font-semibold py-2.5 rounded-lg transition-all ${!isFormValid && isFormDirty
+        base: `hover:bg-(--Brand-700) sm:max-w-[170px] cursor-pointer flex items-center justify-center self-end w-full lg:w-auto lg:mt-4 px-[18px] text-center text-white leading-6 font-semibold py-2.5 rounded-lg transition-all ${!isFormValid && isFormDirty
             ? 'bg-gray-400 cursor-not-allowed self-center'
             : isFormValid
               ? 'bg-emerald-950'
-              : 'bg-gray-400 cursor-not-allowed self-center active:bg-gray-400 hover:bg-gray-400'
+              : 'bg-gray-400 cursor-not-allowed self-center pointer-events-none'
           }`
       }"
     >

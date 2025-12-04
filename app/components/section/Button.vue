@@ -8,7 +8,7 @@ const props = defineProps<Props>()
 
 <template>
  <a :href="props.path"
-  class="border-(--border) sm:border-0 flex justify-center flex-wrap items-center w-9 h-9 sm:w-auto sm:h-auto gap-2 sm:bg-gray-100 hover:bg-gray-200 transition-colors duration-200 sm:px-3.5 sm:py-2.5 rounded-lg cursor-pointer"
+  class="border border-(--border) sm:border-0 flex justify-center flex-wrap items-center w-9 h-9 sm:w-auto sm:h-auto gap-2 sm:bg-gray-100 hover:bg-gray-200 transition-colors duration-200 sm:px-3.5 sm:py-2.5 rounded-lg cursor-pointer"
 >
     <div class="hidden sm:flex justify-center items-center px-0.5 py-0">
       <span class="text-(--Brand-950,#053628) font-[Inter] text-sm font-semibold leading-5">

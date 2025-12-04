@@ -19,11 +19,11 @@ const props = defineProps<Props>()
 <template>
 	<ClientOnly>
 
-		<swiper :slides-per-view="1" :centeredSlides="true" :loop="true" :space-between="12"
+		<swiper :slides-per-view="2" :loop="true" :space-between="12"
 		:breakpoints="{
 			577: { slidesPerView: 1, spaceBetween: 32 },
 			769: { slidesPerView: 3, spaceBetween: 32 },
-			1025: { slidesPerView: 4, spaceBetween: 32, centeredSlides: false },
+			1025: { slidesPerView: 4, spaceBetween: 32 },
 		}" 
 		:navigation="false">
 
@@ -49,7 +49,7 @@ const props = defineProps<Props>()
 
 @media (max-width: 576px) {
 	.swiper {
-		max-width: 200px;
+		max-width: 100%;
 	}
 }
 </style>

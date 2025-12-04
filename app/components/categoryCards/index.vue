@@ -30,16 +30,17 @@ const slides = [
 	<ClientOnly>
 		<div class="relative overflow-hidden max-w-(--container) px-4 m-auto pb-6 sm:pb-20">
 
-			<swiper :slides-per-view="1" :centeredSlides="true" :loop="true" :space-between="8" :breakpoints="{
+			<swiper :slides-per-view="2" :space-between="8" :breakpoints="{
 				577: { slidesPerView: 1, spaceBetween: 32 },
 				769: { slidesPerView: 3, spaceBetween: 32 },
-				1025: { slidesPerView: 4, spaceBetween: 32, centeredSlides: false },
+				1025: { slidesPerView: 4, spaceBetween: 32, },
 			}" :navigation="false">
 
 				<swiper-slide v-for="(item, i) in slides" :key="i" :class="`slide-${i}`" class="rounded-2xl overflow-hidden">
 					<img :src="item.image" :alt="item.title" class="absolute bottom-0 -z-1" />
 					<div class="flex flex-col h-full">
-						<div class="text-[#0A0D12] font-sans font-semibold sm:text-xl tex-sm leading-5 sm:leading-[30px] tracking-[0%]">
+						<div
+							class="text-[#0A0D12] font-sans font-semibold sm:text-xl text-xs leading-[18px] sm:leading-[30px] tracking-[0%]">
 							{{ item.title }}
 						</div>
 					</div>
@@ -103,10 +104,26 @@ const slides = [
 
 @media (max-width: 576px) {
 	.swiper {
-		max-width: 200px;
+		max-width: 290px;
+		height: 140px;
 	}
+
 	.swiper-slide {
+		height: 100%;
 		padding: 12px;
+	}
+
+	.swiper-slide:after {
+		height: 30px;
+		background: url('/image/cards/pattern-mob.svg');
+	}
+
+	.swiper-slide img {
+		right: 10px;
+		max-width: 90px;
+	}
+	.slide-1 img {
+		bottom: 6px;
 	}
 }
 </style>

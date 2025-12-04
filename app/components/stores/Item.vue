@@ -18,7 +18,7 @@ const props = defineProps<Props>()
 <template>
   <div
     :class="props.isActive ? 'border-green-600' : '' "
-    class="w-full gap-3 flex justify-center flex-col items-start border border-solid border-gray-300 p-6 rounded-2xl">
+    class="hover:bg-gray-50 w-full gap-3 flex justify-center flex-col items-start border border-solid border-gray-300 p-6 rounded-2xl">
     <div class="text-zinc-950 leading-6 self-stretch">
       {{ props.address }}
     </div>

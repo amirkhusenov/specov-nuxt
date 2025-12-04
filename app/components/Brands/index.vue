@@ -102,7 +102,7 @@ const goNext = () => {
   <ClientOnly>
     <div class="relative">
 
-      <swiper @swiper="onSwiper" :modules="[Navigation,]" :slides-per-view="1" :loop="true" :space-between="16"
+      <swiper @swiper="onSwiper" :modules="[Navigation,]" :slides-per-view="1" :loop="true" :space-between="8"
         :navigation="false" :breakpoints="{
           576: { slidesPerView: 3, },
           769: { slidesPerView: 5, },
@@ -198,5 +198,24 @@ const goNext = () => {
     padding: 0;
   }
 
+}
+
+@media (max-width: 576px) {
+  .swiper {
+    max-width: 210px;
+  }
+
+  .swiper-slide {
+    gap: 8px;
+  }
+
+  .swiper-slide div {
+    height: 40px;
+    padding: 12px;
+  }
+  .swiper-slide img {
+    height: 100%;
+    object-fit: contain;
+  }
 }
 </style>

@@ -9,7 +9,6 @@ const props = defineProps<{
 const emit = defineEmits<{
   (e: 'update:modelValue', value: string): void
   (e: 'blur', event: FocusEvent): void
-  (e: 'input', event: InputEvent): void
 }>()
 
 const inputRef = ref<HTMLInputElement | null>(null)
@@ -23,23 +22,25 @@ onMounted(() => {
     lazy: false
   })
 
+  // Сразу устанавливаем значение из modelValue
+  if (props.modelValue) {
+    mask.unmaskedValue = props.modelValue
+  }
+
   mask.on('accept', () => {
     const unmasked = mask.unmaskedValue || ''
     emit('update:modelValue', unmasked)
-    // Эмитим input для реактивности (опционально, но помогает)
-    emit('input', new InputEvent('input'))
   })
 })
 
-// Синхронизация при внешнем изменении
+// Реакция на внешние изменения (например, сброс формы)
 watch(
   () => props.modelValue,
   (newVal) => {
     if (mask && mask.unmaskedValue !== newVal) {
       mask.unmaskedValue = newVal
     }
-  },
-  { immediate: true }
+  }
 )
 
 function handleBlur(event: FocusEvent) {
@@ -55,9 +56,8 @@ onBeforeUnmount(() => {
   <input
     ref="inputRef"
     type="tel"
-    :value="mask?.value ?? ''"
-    @blur="handleBlur"
     class="shadow-none w-full h-11 bg-white! text-gray-500 placeholder-gray-400 border-transparent rounded-lg py-2.5 px-3.5 focus:outline-none ring-0 appearance-none"
     placeholder="+7 (999) 999-99-99"
+    @blur="handleBlur"
   />
 </template>
