@@ -15,7 +15,7 @@ const props = defineProps<Props>()
     <div
       class="relative flex items-center justify-center h-[155px] sm:h-[280px] rounded-2xl overflow-hidden border border-(--border)">
 
-      <div class="absolute top-1 right-1 sm:top-3 sm:right-3 flex flex-row gap-1 sm:gap-2">
+      <div class="absolute top-1 right-1 z-10 sm:top-3 sm:right-3 flex flex-row gap-1 sm:gap-2">
 
         <ProductCardIconButton>
           <svg width="100%" height="100%" preserveAspectRatio="none" viewBox="0 0 20 20" fill="none"
@@ -37,7 +37,7 @@ const props = defineProps<Props>()
 
       </div>
 
-      <img :src="props.item.image" class="max-w-[115px] sm:max-w-full" alt="item.title">
+      <ProductCardSliderImgs :imgs="props.item.imgs" />
 
     </div>
     <div class="flex flex-col justify-between items-start self-stretch">
