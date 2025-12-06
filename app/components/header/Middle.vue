@@ -2,6 +2,9 @@
 import IconsCompare from '@/components/icons/Compare.vue'
 import IconsFavorite from '@/components/icons/Favorite.vue'
 import IconsCart from '@/components/icons/Cart.vue'
+
+const isMenu = ref(false)
+
 const buttons = [
   {
     src: '/compare',
@@ -16,6 +19,11 @@ const buttons = [
     icon: IconsCart
   },
 ]
+
+function toggleMenu() {
+  isMenu.value = !isMenu.value
+}
+
 </script>
 
 <template>
@@ -30,8 +38,7 @@ const buttons = [
 
     <!-- buttons -->
     <a v-for="item in buttons" :href="item.src"
-      class="hidden lg:flex border-zinc-300 p-[11px] justify-spacse-between h-11 w-11 flex-col bg-white hover:bg-gray-300 transition items-center border border-solid rounded-lg"
-      caption="Корзина">
+      class="hidden lg:flex border-zinc-300 p-[11px] justify-spacse-between h-11 w-11 flex-col bg-white hover:bg-gray-300 transition items-center border border-solid rounded-lg">
       <span class="h-5 w-5">
         <component :is="item.icon" />
       </span>
@@ -39,33 +46,12 @@ const buttons = [
 
     <HeaderLogin class="hidden lg:flex" />
 
-    <!-- Мобильное меню -->
-    <div class="order-0 lg:hidden">
-      <USlideover :close="{
-        color: 'primary',
-        class: 'rounded-full'
-      }">
-        <HeaderBurger />
+    <HeaderBurger :is-active="isMenu" @click="toggleMenu" />
 
-        <template #body>
-          <div class="flex items-center flex-col gap-5">
-            <HeaderPhone :mobile="true" />
-            <HeaderNav />
-            <HeaderCatalogButton />
-            <!-- buttons -->
-            <div class="flex justify-center gap-3 flex-wrap">
-              <a v-for="item in buttons" :href="item.src"
-                class="flex border-zinc-300 p-[11px] justify-center h-11 w-11 flex-col bg-white items-center border border-solid rounded-lg">
-                <span class="h-5 w-5">
-                  <component :is="item.icon" />
-                </span>
-              </a>
-            </div>
-            <HeaderLogin />
-          </div>
-        </template>
-      </USlideover>
-    </div>
+    <HeaderMobileMenu :is-show="isMenu" />
 
   </div>
 </template>
+
+<style>
+</style>

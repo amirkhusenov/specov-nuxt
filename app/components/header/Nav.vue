@@ -17,7 +17,6 @@ const menu = ref([
 
 <template>
   <nav class="font-medium text-gray-600 flex flex-wrap justify-center gap-x-5 gap-y-2.5 items-center">
-    <!-- buttons -->
     <a v-for="(item, index) in menu" :href="item.src" :key="index" class="hover:text-(--Brand-700)">
       {{ item.name }}
     </a>
