@@ -22,6 +22,10 @@
   }
 }
 
+section:last-child {
+  margin-bottom: 0;
+}
+
 .custom-swiper-button-prev,
 .custom-swiper-button-next {
   position: absolute;
