@@ -16,7 +16,7 @@ export default {
 </script>
 
 <template>
-  <footer class="pt-16 lg:pt-22">
+  <footer class="pt-16 pb-[66px] lg:pb-0 lg:pt-22">
     <SectionContainer>
 
       <div class="flex flex-col justify-center items-center lg:flex-row lg:justify-between gap-6 lg:gap-3 pb-6 border-b border-(--border) border-solid">

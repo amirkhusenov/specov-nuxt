@@ -27,29 +27,31 @@ const slides = [
 </script>
 
 <template>
-	<ClientOnly>
-		<div class="relative overflow-hidden max-w-(--container) px-4 m-auto pb-6 sm:pb-20">
+	<Section>
+		<ClientOnly>
+			<div class="relative max-w-(--container) px-4 m-auto pb-6 sm:pb-20">
 
-			<swiper :slides-per-view="2" :space-between="8" :breakpoints="{
-				577: { slidesPerView: 1, spaceBetween: 32 },
-				769: { slidesPerView: 3, spaceBetween: 32 },
-				1025: { slidesPerView: 4, spaceBetween: 32, },
-			}" :navigation="false">
+				<swiper :slides-per-view="2" :space-between="8" :breakpoints="{
+					577: { slidesPerView: 1, spaceBetween: 32 },
+					769: { slidesPerView: 3, spaceBetween: 32 },
+					1025: { slidesPerView: 4, spaceBetween: 32, },
+				}" :navigation="false">
 
-				<swiper-slide v-for="(item, i) in slides" :key="i" :class="`slide-${i}`" class="rounded-2xl overflow-hidden">
-					<img :src="item.image" :alt="item.title" class="absolute bottom-0 -z-1" />
-					<div class="flex flex-col h-full">
-						<div
-							class="text-[#0A0D12] font-sans font-semibold sm:text-xl text-xs leading-[18px] sm:leading-[30px] tracking-[0%]">
-							{{ item.title }}
+					<swiper-slide v-for="(item, i) in slides" :key="i" :class="`slide-${i}`" class="rounded-2xl overflow-hidden">
+						<img :src="item.image" :alt="item.title" class="absolute bottom-0 -z-1" />
+						<div class="flex flex-col h-full">
+							<div
+								class="text-[#0A0D12] font-sans font-semibold sm:text-xl text-xs leading-[18px] sm:leading-[30px] tracking-[0%]">
+								{{ item.title }}
+							</div>
 						</div>
-					</div>
 
-				</swiper-slide>
+					</swiper-slide>
 
-			</swiper>
-		</div>
-	</ClientOnly>
+				</swiper>
+			</div>
+		</ClientOnly>
+	</Section>
 </template>
 
 <style scoped>
@@ -91,7 +93,7 @@ const slides = [
 }
 
 .slide-3 {
-	background: #fff;
+	background: #F5F5F5;
 }
 
 @media (max-width: 768px) {
@@ -122,6 +124,7 @@ const slides = [
 		right: 10px;
 		max-width: 90px;
 	}
+
 	.slide-1 img {
 		bottom: 6px;
 	}

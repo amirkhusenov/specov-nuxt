@@ -8,5 +8,7 @@
 
     <HeaderBottom />
 
+    <HeaderMobileMenuBottom />
+
   </header>
 </template>
