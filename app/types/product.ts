@@ -5,7 +5,7 @@ export interface ProductImage {
 
 
 export interface ProductCard {
-	id: number
+	id: string
 	image: string
 	title: string
 	price: number

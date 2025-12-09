@@ -14,9 +14,9 @@ const gardenProducts = useProductsStore().garden
     <Header />
 
     <main>
-      <CategoryAdv />
+      <!-- <CategoryAdv />
       <CategoryCards />
-      <Banner />
+      <Banner /> -->
 
       <Section>
         <SectionContainer>
