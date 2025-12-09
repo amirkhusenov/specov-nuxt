@@ -13,16 +13,17 @@ console.log(productId)
 
     <Header />
 
-    <Breadcrmbs />
+    <Breadcrumbs />
 
     <main>
-          <div>
-      <!-- <h1>Продукт {{ product?.title }}</h1> -->
-      <!-- <p>{{ product?.description }}</p> -->
-      jkkj
-    </div>
+      <div>
+        <!-- <h1>Продукт {{ product?.title }}</h1> -->
+        <!-- <p>{{ product?.description }}</p> -->
+        jkkj
+      </div>
     </main>
 
-
+    <Footer />
+    
   </div>
 </template>

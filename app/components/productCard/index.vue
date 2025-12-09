@@ -58,7 +58,6 @@ const props = defineProps<Props>()
       </div>
 
       <div class="min-h-10 mt-1">
-        {{ props.item.id }}
         <nuxt-link :to="{ name: 'products-id', params: { id: props.item.id } }"
           class="text-sm text-gray-600 line-clamp-3 sm:line-clamp-2 overflow-ellipsis">
           {{ props.item.title }}
