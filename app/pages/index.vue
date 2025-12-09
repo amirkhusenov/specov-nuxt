@@ -13,8 +13,6 @@ const gardenProducts = useProductsStore().garden
 
     <Header />
 
-    <Breadcrumbs />
-
     <main>
       <CategoryAdv />
       <CategoryCards />
