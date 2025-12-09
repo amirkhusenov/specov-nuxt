@@ -1,16 +1,20 @@
 <script setup lang="ts">
 interface Props {
-  class?: string
+  isActive: boolean
 }
-const props = defineProps<Props> ()
+
+const props = defineProps<Props>()
+const emit = defineEmits(['toggle-catalog'])
+
 </script>
 
 <template>
   <!-- catalog -->
-  <div :class="props.class"
-    class="bg-[#C3974C] hover:bg-[#D3B579] transition gap-2 flex justify-center items-center py-2.5 px-4 rounded-lg cursor-pointer">
-    <div class="h-5 w-5"><svg width="100%" height="100%" style="overflow: visible;" preserveAspectRatio="none"
-        viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <button @click="$emit('toggle-catalog')"
+    class="hidden lg:flex bg-[#C3974C] hover:bg-[#D3B579] transition gap-2 justify-center items-center py-2.5 px-4 rounded-lg cursor-pointer">
+    <span v-if="!props.isActive" class="h-5 w-5">
+      <svg width="100%" height="100%" preserveAspectRatio="none" viewBox="0 0 20 20" fill="none"
+        xmlns="http://www.w3.org/2000/svg">
         <path
           d="M9.99992 5.00001C10.4602 5.00001 10.8333 4.62691 10.8333 4.16668C10.8333 3.70644 10.4602 3.33334 9.99992 3.33334C9.53968 3.33334 9.16659 3.70644 9.16659 4.16668C9.16659 4.62691 9.53968 5.00001 9.99992 5.00001Z"
           stroke="white" stroke-width="1.66667" stroke-linecap="round" stroke-linejoin="round"
@@ -47,8 +51,15 @@ const props = defineProps<Props> ()
           d="M4.16659 16.6667C4.62682 16.6667 4.99992 16.2936 4.99992 15.8333C4.99992 15.3731 4.62682 15 4.16659 15C3.70635 15 3.33325 15.3731 3.33325 15.8333C3.33325 16.2936 3.70635 16.6667 4.16659 16.6667Z"
           stroke="white" stroke-width="1.66667" stroke-linecap="round" stroke-linejoin="round"
           data-v-inspector="src/components/assets/DotsGrid.vue:70:4"></path>
-      </svg></div>
-    <div class="font-semibold text-white"> Каталог </div>
-  </div>
+      </svg>
+    </span>
+    <span v-else class="flex items-center justify-center h-5 w-5">
+      <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M10.8335 0.833344L0.833496 10.8333M0.833496 0.833344L10.8335 10.8333" stroke="white"
+          stroke-width="1.66667" stroke-linecap="round" stroke-linejoin="round" />
+      </svg>
+    </span>
+    <div class="font-semibold text-white">Каталог</div>
+  </button>
 
 </template>

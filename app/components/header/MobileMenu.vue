@@ -21,7 +21,7 @@ const buttons = [
   },
 ]
 
-const menu = ref([
+const menu = [
   {
     name: "О компании",
     src: "/about"
@@ -38,7 +38,7 @@ const menu = ref([
     name: "Юрлицам",
     src: "/business"
   },
-])
+]
 
 
 </script>

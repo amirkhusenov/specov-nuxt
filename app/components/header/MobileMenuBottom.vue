@@ -5,50 +5,59 @@ import IconsCart from '@/components/icons/Cart.vue'
 import IconsFavorite from '@/components/icons/Favorite.vue'
 import IconsCabinet from '@/components/icons/Cabinet.vue'
 
-const isCatalog = ref(false)
+const emit = defineEmits(['toggle-catalog'])
 
+interface MenuItemButton {
+  name: string;
+  src?: string;
+  isActive: boolean;
+}
 
-const buttons = [
+const buttons = ref([
   {
     name: 'Главная',
     src: '/',
-    icon: IconsHome,
+    icon: markRaw(IconsHome),
     isActive: true
   },
   {
     name: 'Каталог',
-    icon: IconsBurger,
+    icon: markRaw(IconsBurger),
     isActive: false
   },
   {
     name: 'Корзина',
     src: '/cart',
-    icon: IconsCart,
+    icon: markRaw(IconsCart),
     isActive: false
   },
   {
     name: 'Избранное',
     src: '/favorites',
-    icon: IconsFavorite,
+    icon: markRaw(IconsFavorite),
     isActive: false
   },
   {
     name: 'Кабинет',
     src: '/profile',
-    icon: IconsCabinet,
+    icon: markRaw(IconsCabinet),
     isActive: false
   },
-];
+]);
 
-function handleClick(item: typeof buttons[0]) {
+function handleClick(item: MenuItemButton, index: number) {
+  buttons.value.forEach((btn, i) => {
+    btn.isActive = i === index;
+  });
+
   if (item.name === 'Каталог') {
-    isCatalog.value = !isCatalog.value
+    emit('toggle-catalog');
   }
+
   if (item.src) {
-    navigateTo(item.src)
+    navigateTo(item.src);
   }
 }
-
 </script>
 
 <template>
@@ -58,7 +67,7 @@ function handleClick(item: typeof buttons[0]) {
     <div class="max-w-(--container) m-auto px-2.5 sm:px-4">
       <div class="flex justify-between">
 
-        <a v-for="item in buttons" :href="item.src" @click.prevent="handleClick(item)"
+        <a v-for="(item, index) in buttons" :href="item.src" @click.prevent="handleClick(item, index)"
           :class="[item.isActive ? 'text-(--Brand-700)' : 'text-gray-600']"
           class="flex flex-col items-center gap-2 text-xs sm:text-sm leading-[18px] sm:leading-5 transition font-bold sm:font-medium">
           <span class="h-5 w-5">

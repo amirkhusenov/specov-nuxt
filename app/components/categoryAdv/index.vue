@@ -80,11 +80,11 @@ const goNext = () => {
 					<img :src="item.image" :alt="item.title"
 						class="absolute inset-0 -z-1 w-full h-full object-cover rounded-lg" />
 					<div class="flex flex-col h-full">
-						<div :class="[item.theme === 'dark' ? 'text-(--color1)' : '']"
+						<div :class="[item.theme === 'dark' ? 'text-(--color1)' : 'text-white']"
 							class="max-w-[320px] mb-2 font-['Russo_One'] font-normal text-2xl leading-8 sm:text-4xl sm:leading-11 tracking-[-2%]">
 							{{ item.title }}
 						</div>
-						<p v-if="item.text" class="max-w-[190px] mb-6 sm:mb-16">
+						<p v-if="item.text" :class="[item.theme === 'dark' ? 'text-(--color1)' : 'text-white']" class="max-w-[190px] mb-6 sm:mb-16">
 							{{ item.text }}
 						</p>
 						<div class="flex items-end mt-auto">

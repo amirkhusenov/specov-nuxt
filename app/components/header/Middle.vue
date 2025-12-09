@@ -4,6 +4,7 @@ import IconsFavorite from '@/components/icons/Favorite.vue'
 import IconsCart from '@/components/icons/Cart.vue'
 
 const isMenu = ref(false)
+const isCatalog = ref(false)
 
 const buttons = [
   {
@@ -32,13 +33,13 @@ function toggleMenu() {
 
     <HeaderLogo />
 
-    <HeaderCatalogButton class="hidden lg:flex" />
+    <HeaderCatalogButton @toggle-catalog="isCatalog = !isCatalog" :is-active="isCatalog" />
 
     <HeaderSearch class="w-full order-1 sm:order-0" />
 
     <!-- buttons -->
     <a v-for="item in buttons" :href="item.src"
-      class="hidden lg:flex border-zinc-300 p-[11px] justify-spacse-between h-11 w-11 flex-col bg-white hover:bg-gray-300 transition items-center border border-solid rounded-lg">
+      class="text-(--Brand-950) hidden lg:flex border-zinc-300 p-[11px] justify-spacse-between h-11 w-11 flex-col bg-white hover:bg-gray-300 transition items-center border border-solid rounded-lg">
       <span class="h-5 w-5">
         <component :is="item.icon" />
       </span>
@@ -48,10 +49,13 @@ function toggleMenu() {
 
     <HeaderBurger :is-active="isMenu" @click="toggleMenu" />
 
-    <HeaderMobileMenu :is-show="isMenu" />
+    <HeaderMobileMenu :is-show="isMenu"  />
+
+    <HeaderCatalogMenu :is-show="isCatalog" @hide-catalog="isCatalog = !isCatalog" />
+
+    <HeaderMobileMenuBottom @toggle-catalog="isCatalog = !isCatalog" />
 
   </div>
 </template>
 
-<style>
-</style>
+<style></style>

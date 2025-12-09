@@ -31,7 +31,7 @@ const items = [
 
         <div v-for="item in items" class="grid gap-6 max-w-[140px] sm:max-w-[230px]">
           <img class="w-8 h-8" :src="item.src" :alt="item.title">
-          <p class="font-sans font-medium text-sm sm:text-base leading-6 tracking-[0%]">
+          <p class="font-sans font-medium text-sm sm:text-base leading-6 tracking-[0%] text-white">
             {{ item.title }}
           </p>
         </div>
