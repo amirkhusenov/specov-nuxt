@@ -13,10 +13,12 @@ const gardenProducts = useProductsStore().garden
 
     <Header />
 
+    <Breadcrumbs />
+
     <main>
-      <!-- <CategoryAdv />
+      <CategoryAdv />
       <CategoryCards />
-      <Banner /> -->
+      <Banner />
 
       <Section>
         <SectionContainer>
