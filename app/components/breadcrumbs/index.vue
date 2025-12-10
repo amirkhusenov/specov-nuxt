@@ -8,15 +8,15 @@ const items = [
   },
   {
     label: 'Инструмент',
-    to: '/docs/components'
+    to: '/'
   },
   {
     label: 'Электроинструмент',
-    to: '/docs/components/breadcrumb'
+    to: '/'
   },
   {
     label: 'Перфораторы',
-    to: '/docs/components/breadcrumb'
+    to: '/'
   },
   {
     label: 'Электроперфораторы Makita',

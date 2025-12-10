@@ -1,10 +1,14 @@
 <script setup lang="ts">
+interface Props {
+  class?: string
+}
 
+const props = defineProps<Props>()
 </script>
 
 
 <template>
-  <button class="w-fit-content ml-0 sm:w-full bg-emerald-950 hover:bg-(--Brand-700) transition gap-1.5 items-center justify-center flex py-2.5 px-3.5 rounded-lg cursor-pointer">
+  <button :class="props.class" class="text-white text-sm w-fit-content ml-0 sm:w-full bg-emerald-950 hover:bg-(--Brand-700) transition gap-1.5 items-center justify-center flex py-2.5 px-3.5 rounded-xl cursor-pointer">
     <div class="h-5 w-5"><svg width="100%" height="100%" style="overflow: visible;" preserveAspectRatio="none"
         viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
         <g clip-path="url(#clip0_14880_4157)" data-v-inspector="src/components/assets/ShoppingCart2.vue:14:4">
@@ -19,7 +23,8 @@
             </rect>
           </clipPath>
         </defs>
-      </svg></div>
-    <div class="text-white text-sm">В корзину</div>
+      </svg>
+    </div>
+    <span>В корзину</span>
   </button>
 </template>

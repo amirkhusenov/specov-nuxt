@@ -25,7 +25,7 @@ const gardenProducts = useProductsStore().garden
             <SectionButton text="Смотреть всё" path="/" />
           </SectionHeader>
 
-          <ProductCardSlider :items="popularProducts" />
+          <ProductSlider :items="popularProducts" />
 
         </SectionContainer>
       </Section>
@@ -37,7 +37,7 @@ const gardenProducts = useProductsStore().garden
             <SectionButton text="Смотреть всё" path="/" />
           </SectionHeader>
 
-          <ProductCardSlider :items="buildingProducts" />
+          <ProductSlider :items="buildingProducts" />
 
         </SectionContainer>
       </Section>
@@ -61,7 +61,7 @@ const gardenProducts = useProductsStore().garden
             <SectionButton text="Смотреть всё" path="/" />
           </SectionHeader>
 
-          <ProductCardSlider :items="gardenProducts" />
+          <ProductSlider :items="gardenProducts" />
 
         </SectionContainer>
       </Section>
