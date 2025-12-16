@@ -125,90 +125,108 @@ const formatPrice = (price: number) => {
       </NuxtLink>
     </div>
 
-    <div v-if="isExpanded && order.products.length > 0" class="hidden min-[870px]:block bg-(--Base-White) px-4 py-4 overflow-x-auto rounded-b-lg border-(--border)">
-      <div class="hidden md:grid grid-cols-[70px_minmax(150px,1fr)_70px_90px_100px_70px_100px] gap-3 py-2 text-sm text-(--Text-600)">
-        <div>Артикул</div>
-        <div>Наименование</div>
-        <div>Кол-во</div>
-        <div>Цена за шт.</div>
-        <div>Сумма</div>
-        <div>Скидка</div>
-        <div class="text-right">К оплате</div>
-      </div>
+    <Transition
+      enter-active-class="transition-all duration-500 ease-out overflow-hidden"
+      enter-from-class="max-h-0"
+      enter-to-class="max-h-[2000px]"
+      leave-active-class="transition-all duration-500 ease-in overflow-hidden"
+      leave-from-class="max-h-[2000px]"
+      leave-to-class="max-h-0"
+    >
+      <div v-if="isExpanded && order.products.length > 0" class="hidden min-[870px]:block bg-(--Base-White) px-4 py-4 overflow-x-auto rounded-b-lg border-(--border)">
+        <div class="hidden md:grid grid-cols-[70px_minmax(150px,1fr)_70px_90px_100px_70px_100px] gap-3 py-2 text-sm text-(--Text-600)">
+          <div>Артикул</div>
+          <div>Наименование</div>
+          <div>Кол-во</div>
+          <div>Цена за шт.</div>
+          <div>Сумма</div>
+          <div>Скидка</div>
+          <div class="text-right">К оплате</div>
+        </div>
 
-      <div class="flex flex-col">
-        <div 
-          v-for="(product, pIndex) in order.products" 
-          :key="pIndex" 
-          class="grid grid-cols-2 md:grid-cols-[70px_minmax(150px,1fr)_70px_90px_100px_70px_100px] gap-2 md:gap-3 py-3 items-center"
-        >
-          <div class="text-sm text-(--Text-950) font-semibold">{{ product.article }}</div>
-          <div class="flex items-center gap-3">
-            <img :src="product.image" :alt="product.name" class="w-10 h-10 object-contain">
-            <span class="text-sm text-(--Text-950) truncate font-semibold">{{ product.name }}</span>
+        <div class="flex flex-col">
+          <div 
+            v-for="(product, pIndex) in order.products" 
+            :key="pIndex" 
+            class="grid grid-cols-2 md:grid-cols-[70px_minmax(150px,1fr)_70px_90px_100px_70px_100px] gap-2 md:gap-3 py-3 items-center"
+          >
+            <div class="text-sm text-(--Text-950) font-semibold">{{ product.article }}</div>
+            <div class="flex items-center gap-3">
+              <img :src="product.image" :alt="product.name" class="w-10 h-10 object-contain">
+              <span class="text-sm text-(--Text-950) truncate font-semibold">{{ product.name }}</span>
+            </div>
+            <div class="text-sm text-(--Text-950) font-semibold">{{ product.quantity }} шт.</div>
+            <div class="text-sm text-(--Text-950) font-semibold">{{ formatPrice(product.pricePerUnit) }}</div>
+            <div class="text-sm text-(--Text-950) font-semibold">{{ formatPrice(product.sum) }}</div>
+            <div class="text-sm text-(--Brand-700) font-semibold">{{ product.discount }}%</div>
+            <div class="text-sm text-(--Text-950) text-right font-semibold">{{ formatPrice(product.toPay) }}</div>
           </div>
-          <div class="text-sm text-(--Text-950) font-semibold">{{ product.quantity }} шт.</div>
-          <div class="text-sm text-(--Text-950) font-semibold">{{ formatPrice(product.pricePerUnit) }}</div>
-          <div class="text-sm text-(--Text-950) font-semibold">{{ formatPrice(product.sum) }}</div>
-          <div class="text-sm text-(--Brand-700) font-semibold">{{ product.discount }}%</div>
-          <div class="text-sm text-(--Text-950) text-right font-semibold">{{ formatPrice(product.toPay) }}</div>
         </div>
       </div>
-    </div>
+    </Transition>
 
-    <div v-if="isExpanded && order.products.length > 0" class="block min-[870px]:hidden bg-(--Base-White) px-4 py-4 rounded-b-lg border-t border-(--border)">
-      <div class="flex items-center justify-between mb-4">
-        <button 
-          @click="toggleOrder"
-          class="flex items-center gap-2 text-sm text-(--Text-950)"
-        >
-          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" class="rotate-180">
-            <path d="M3.3335 10H16.6668M16.6668 10L11.6668 5M16.6668 10L11.6668 15" stroke="currentColor" stroke-width="1.66667" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </button>
-        <div class="flex items-center gap-2 text-sm text-(--Text-950)">
-          <img src="/image/sidebar/shopping-bag.svg" alt="" class="w-5 h-5">
-          <span>{{ order.productCount }} {{ order.productCount === 1 ? 'товар' : order.productCount < 5 ? 'товара' : 'товаров' }}</span>
-          <span class="font-bold">{{ formatPrice(order.total) }}</span>
+    <Transition
+      enter-active-class="transition-all duration-500 ease-out overflow-hidden"
+      enter-from-class="max-h-0"
+      enter-to-class="max-h-[5000px]"
+      leave-active-class="transition-all duration-500 ease-in overflow-hidden"
+      leave-from-class="max-h-[5000px]"
+      leave-to-class="max-h-0"
+    >
+      <div v-if="isExpanded && order.products.length > 0" class="block min-[870px]:hidden bg-(--Base-White) px-4 py-4 rounded-b-lg border-t border-(--border)">
+        <div class="flex items-center justify-between mb-4">
+          <button 
+            @click="toggleOrder"
+            class="flex items-center gap-2 text-sm text-(--Text-950)"
+          >
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" class="rotate-180">
+              <path d="M3.3335 10H16.6668M16.6668 10L11.6668 5M16.6668 10L11.6668 15" stroke="currentColor" stroke-width="1.66667" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+          <div class="flex items-center gap-2 text-sm text-(--Text-950)">
+            <img src="/image/sidebar/shopping-bag.svg" alt="" class="w-5 h-5">
+            <span>{{ order.productCount }} {{ order.productCount === 1 ? 'товар' : order.productCount < 5 ? 'товара' : 'товаров' }}</span>
+            <span class="font-bold">{{ formatPrice(order.total) }}</span>
+          </div>
         </div>
-      </div>
 
-      <div class="flex flex-col gap-4">
-        <div 
-          v-for="(product, pIndex) in order.products" 
-          :key="pIndex" 
-          class="flex gap-3 pb-4 border-b border-(--border) last:border-b-0"
-        >
-          <img :src="product.image" :alt="product.name" class="w-16 h-16 object-contain shrink-0">
-          <div class="flex-1">
-            <div class="font-semibold text-(--Text-950) mb-1">{{ product.name }}</div>
-            <div class="text-sm text-(--Text-600) mb-3">Артикул: {{ product.article }}</div>
-            
-            <div class="grid grid-cols-2 gap-y-2 text-sm">
-              <div>
-                <div class="text-(--Text-600)">Цена за шт.</div>
-                <div class="font-semibold text-(--Text-950)">{{ formatPrice(product.pricePerUnit) }}</div>
-              </div>
-              <div class="text-right">
-                <div class="text-(--Text-600)">Количество:</div>
-                <div class="font-semibold text-(--Text-950)">{{ product.quantity }} шт.</div>
-              </div>
-              <div>
-                <div class="text-(--Text-600)">Сумма:</div>
-                <div class="font-semibold text-(--Text-950)">{{ formatPrice(product.sum) }}</div>
-              </div>
-              <div class="text-right">
-                <div class="text-(--Text-600)">Скидка:</div>
-                <div class="font-semibold text-(--Brand-700)">{{ product.discount }}%</div>
-              </div>
-              <div class="col-span-2">
-                <div class="text-(--Text-600)">К оплате:</div>
-                <div class="font-semibold text-(--Text-950)">{{ formatPrice(product.toPay) }}</div>
+        <div class="flex flex-col gap-4">
+          <div 
+            v-for="(product, pIndex) in order.products" 
+            :key="pIndex" 
+            class="flex gap-3 pb-4 border-b border-(--border) last:border-b-0"
+          >
+            <img :src="product.image" :alt="product.name" class="w-16 h-16 object-contain shrink-0">
+            <div class="flex-1">
+              <div class="font-semibold text-(--Text-950) mb-1">{{ product.name }}</div>
+              <div class="text-sm text-(--Text-600) mb-3">Артикул: {{ product.article }}</div>
+              
+              <div class="grid grid-cols-2 gap-y-2 text-sm">
+                <div>
+                  <div class="text-(--Text-600)">Цена за шт.</div>
+                  <div class="font-semibold text-(--Text-950)">{{ formatPrice(product.pricePerUnit) }}</div>
+                </div>
+                <div class="text-right">
+                  <div class="text-(--Text-600)">Количество:</div>
+                  <div class="font-semibold text-(--Text-950)">{{ product.quantity }} шт.</div>
+                </div>
+                <div>
+                  <div class="text-(--Text-600)">Сумма:</div>
+                  <div class="font-semibold text-(--Text-950)">{{ formatPrice(product.sum) }}</div>
+                </div>
+                <div class="text-right">
+                  <div class="text-(--Text-600)">Скидка:</div>
+                  <div class="font-semibold text-(--Brand-700)">{{ product.discount }}%</div>
+                </div>
+                <div class="col-span-2">
+                  <div class="text-(--Text-600)">К оплате:</div>
+                  <div class="font-semibold text-(--Text-950)">{{ formatPrice(product.toPay) }}</div>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
+    </Transition>
   </div>
 </template>

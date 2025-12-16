@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { onBeforeUnmount, watch, nextTick } from 'vue'
+import IMask from 'imask'
 
 interface Props {
   id: string
@@ -11,10 +13,12 @@ const props = defineProps<Props>()
 const emit = defineEmits<{
   close: []
   getCode: [value: string]
+  success: []
 }>()
 
 const dialogRef = ref<HTMLDialogElement | null>(null)
 const formRef = ref<HTMLFormElement | null>(null)
+const phoneInputRef = ref<HTMLInputElement | null>(null)
 
 const formData = reactive({
   value: '',
@@ -24,8 +28,40 @@ const formData = reactive({
 const codeSent = ref(false)
 const countdown = ref(60)
 let countdownTimer: ReturnType<typeof setInterval> | null = null
+let phoneMask: any = null
 
 const canResendCode = computed(() => codeSent.value && countdown.value <= 0)
+const canConfirm = computed(() => codeSent.value && formData.code.length > 0)
+
+const initPhoneMask = () => {
+  if (!phoneInputRef.value || props.type !== 'sms') return
+  
+  phoneMask = IMask(phoneInputRef.value, {
+    mask: '+{7} (000) 000-00-00',
+    lazy: false
+  })
+  
+  phoneMask.on('accept', () => {
+    const unmasked = phoneMask.unmaskedValue || ''
+    formData.value = unmasked
+  })
+}
+
+const destroyPhoneMask = () => {
+  if (phoneMask) {
+    phoneMask.destroy()
+    phoneMask = null
+  }
+}
+
+watch(
+  () => formData.value,
+  (newVal) => {
+    if (phoneMask && phoneMask.unmaskedValue !== newVal && props.type === 'sms') {
+      phoneMask.unmaskedValue = newVal
+    }
+  }
+)
 
 const openModal = () => {
   formData.value = ''
@@ -37,6 +73,10 @@ const openModal = () => {
     countdownTimer = null
   }
   dialogRef.value?.showModal()
+  
+  nextTick(() => {
+    initPhoneMask()
+  })
 }
 
 const closeModal = () => {
@@ -94,6 +134,12 @@ const handleGetCode = (e: Event) => {
   startCountdown()
 }
 
+const handleConfirm = () => {
+  // TODO: Implement actual code verification logic
+  emit('success')
+  closeModal()
+}
+
 const handleBackdropClick = (event: MouseEvent) => {
   if (event.target === dialogRef.value) {
     handleClose()
@@ -105,11 +151,19 @@ const handleDialogClose = () => {
     clearInterval(countdownTimer)
     countdownTimer = null
   }
+  destroyPhoneMask()
   if (document.activeElement instanceof HTMLElement) {
     document.activeElement.blur()
   }
   emit('close')
 }
+
+onBeforeUnmount(() => {
+  if (countdownTimer) {
+    clearInterval(countdownTimer)
+  }
+  destroyPhoneMask()
+})
 </script>
 
 <template>
@@ -160,9 +214,10 @@ const handleDialogClose = () => {
             </label>
             <input
               v-if="type === 'sms'"
-              v-model="formData.value"
+              ref="phoneInputRef"
               type="tel"
               required
+              placeholder="+7 (999) 999-99-99"
               :disabled="codeSent && !canResendCode"
               class="w-full px-4 py-3 border border-(--border) rounded-lg text-sm text-(--Text-950) focus:outline-none focus:border-(--Brand-600) disabled:bg-(--Background) disabled:cursor-not-allowed"
             >
@@ -218,6 +273,15 @@ const handleDialogClose = () => {
           class="w-full px-4 py-3 bg-(--Brand-950) text-white text-sm font-semibold rounded-lg hover:bg-(--Brand-700) transition-colors cursor-pointer"
         >
           Отправить код повторно
+        </button>
+
+        <button
+          v-if="canConfirm"
+          type="button"
+          @click="handleConfirm"
+          class="w-full px-4 py-3 bg-(--Brand-950) text-white text-sm font-semibold rounded-lg hover:bg-(--Brand-700) transition-colors cursor-pointer mt-3"
+        >
+          Подтвердить
         </button>
       </form>
     </div>

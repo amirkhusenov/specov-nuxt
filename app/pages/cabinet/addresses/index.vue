@@ -1,81 +1,11 @@
 <script setup lang="ts">
-interface Address {
-  id: string
-  title: string
-  address: string
-  code: string
-  sms: {
-    enabled: boolean
-    phone: string
-  }
-  email: {
-    enabled: boolean
-    address: string
-  }
-}
-
-const STORAGE_KEY = 'cabinet_addresses'
+const cabinetStore = useCabinetStore()
 
 const showAddForm = ref(false)
 const showNotification = ref(false)
 
-const loadAddresses = (): Address[] => {
-  if (typeof window !== 'undefined') {
-    const stored = localStorage.getItem(STORAGE_KEY)
-    if (stored) {
-      try {
-        return JSON.parse(stored)
-      } catch (e) {
-        console.error('Error parsing addresses from localStorage:', e)
-      }
-    }
-  }
-  return [
-    {
-      id: '1',
-      title: 'Адрес',
-      address: 'ООО Спецов 625013, Тюменская обл, г Тюмень, ул 50 лет Октября, д. 118а',
-      code: 'EK-00045450',
-      sms: {
-        enabled: true,
-        phone: '+7 (345) 258-18-63'
-      },
-      email: {
-        enabled: true,
-        address: 'info@spetsov.ru'
-      }
-    }
-  ]
-}
-
-const saveAddresses = (addresses: Address[]) => {
-  if (typeof window !== 'undefined') {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(addresses))
-  }
-}
-
-const addresses = ref<Address[]>(loadAddresses())
-
-onMounted(() => {
-  if (typeof window !== 'undefined' && !localStorage.getItem(STORAGE_KEY)) {
-    saveAddresses(addresses.value)
-  }
-})
-
-// Генерация уникального кода точки
-const generateCode = (): string => {
-  const randomNum = Math.floor(Math.random() * 1000000).toString().padStart(8, '0')
-  return `EK-${randomNum}`
-}
-
-// Генерация уникального ID
-const generateId = (): string => {
-  return Date.now().toString() + Math.random().toString(36).substr(2, 9)
-}
-
 const handleDelete = (addressId: string) => {
-  addresses.value = addresses.value.filter(addr => addr.id !== addressId)
-  saveAddresses(addresses.value)
+  cabinetStore.deleteAddress(addressId)
 }
 
 const handleEdit = () => {
@@ -87,18 +17,18 @@ const handleApplyToAll = (type: 'sms' | 'email') => {
 }
 
 const handleToggleSms = (value: boolean, addressId: string) => {
-  const address = addresses.value.find(addr => addr.id === addressId)
+  const address = cabinetStore.addresses.find(addr => addr.id === addressId)
   if (address) {
     address.sms.enabled = value
-    saveAddresses(addresses.value)
+    cabinetStore.saveAddresses(cabinetStore.addresses)
   }
 }
 
 const handleToggleEmail = (value: boolean, addressId: string) => {
-  const address = addresses.value.find(addr => addr.id === addressId)
+  const address = cabinetStore.addresses.find(addr => addr.id === addressId)
   if (address) {
     address.email.enabled = value
-    saveAddresses(addresses.value)
+    cabinetStore.saveAddresses(cabinetStore.addresses)
   }
 }
 
@@ -122,11 +52,9 @@ const handleFormSubmit = (data: { address: string; office: string; entrance: str
     fullAddress += ` (${data.comment})`
   }
 
-  const newAddress: Address = {
-    id: generateId(),
+  cabinetStore.addAddress({
     title: 'Адрес',
     address: fullAddress,
-    code: generateCode(),
     sms: {
       enabled: true,
       phone: '+7 (345) 258-18-63'
@@ -135,10 +63,8 @@ const handleFormSubmit = (data: { address: string; office: string; entrance: str
       enabled: true,
       address: 'info@spetsov.ru'
     }
-  }
+  })
 
-  addresses.value.push(newAddress)
-  saveAddresses(addresses.value)
   showAddForm.value = false
   showNotification.value = true
 }
@@ -187,7 +113,7 @@ const handleFormCancel = () => {
 
             <div v-else class="flex flex-col gap-6 max-[510px]:gap-4">
               <AddressCard 
-                v-for="(address, index) in addresses" 
+                v-for="(address, index) in cabinetStore.addresses" 
                 :key="address.id"
                 :address="address"
                 @delete="() => handleDelete(address.id)"

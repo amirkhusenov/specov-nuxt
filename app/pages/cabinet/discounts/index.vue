@@ -1,18 +1,5 @@
 <script setup lang="ts">
-const discounts = [
-  {
-    percent: '24%',
-    category: 'Силовое оборудование',
-    icon: '/image/cabinet/power-equipment.svg',
-    bgColor: 'bg-[#FEE4E2]'
-  },
-  {
-    percent: '22%',
-    category: 'Ручной инструмент',
-    icon: '/image/cabinet/hand-tools.svg',
-    bgColor: 'bg-[#F5F1DF]'
-  }
-]
+const cabinetStore = useCabinetStore()
 </script>
 
 <template>
@@ -31,7 +18,7 @@ const discounts = [
 
             <div class="grid grid-cols-1 min-[510px]:grid-cols-2 gap-2">
               <DiscountCard 
-                v-for="(discount, index) in discounts" 
+                v-for="(discount, index) in cabinetStore.discountsWithIcons" 
                 :key="index"
                 :discount="discount"
               />

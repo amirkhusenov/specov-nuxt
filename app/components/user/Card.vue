@@ -43,8 +43,8 @@ const handleUnblockConfirm = () => {
 </script>
 
 <template>
-  <div class="bg-(--Base-White) rounded-2xl p-4 min-[510px]:grid min-[510px]:grid-cols-12 min-[510px]:gap-6 min-[510px]:items-center">
-    <div class="min-[510px]:hidden flex flex-col gap-6">
+  <div class="bg-(--Base-White) rounded-2xl p-4 min-[750px]:flex min-[750px]:gap-6 min-[750px]:items-center min-[1280px]:justify-between">
+    <div class="min-[750px]:hidden flex flex-col gap-6">
       <div class="flex flex-col gap-1">
         <div class="text-sm font-medium text-(--Text-600)">ФИО</div>
         <div class="font-bold text-(--Text-950) text-base">{{ user.fullName }}</div>
@@ -76,27 +76,40 @@ const handleUnblockConfirm = () => {
           Заблокировать
         </button>
       </div>
-      
+    </div>
+
+    <div v-if="user.blocked" class="min-[750px]:hidden mt-6">
       <button
-        v-else
         @click="handleUnblock"
-        class="flex items-center justify-center gap-2 px-4 py-2.5 bg-(--Base-White) border border-(--border) rounded-lg text-sm font-semibold text-(--Brand-950) hover:opacity-70 transition-opacity"
+        class="w-full flex items-center justify-center gap-2 px-4 py-2.5 bg-(--Background) border border-(--border) rounded-lg text-sm font-semibold text-(--Brand-950) hover:opacity-70 transition-opacity"
       >
         <img src="/image/cabinet/reverse-left.svg" alt="" class="w-5 h-5 shrink-0">
         Восстановить
       </button>
     </div>
 
-    <div class="hidden min-[510px]:block col-span-4 text-left">
+    <div v-if="!user.blocked" class="hidden min-[750px]:block text-left min-[750px]:w-[181px] min-[1280px]:w-[248px]">
       <div class="font-bold text-(--Text-950) text-base">{{ user.fullName }}</div>
     </div>
-    <div class="hidden min-[510px]:block col-span-4 text-left">
+    <div v-else class="hidden min-[750px]:block text-left min-[750px]:w-[193px] min-[1280px]:w-[215px]">
+      <div class="font-bold text-(--Text-950) text-base">{{ user.fullName }}</div>
+    </div>
+    
+    <div v-if="!user.blocked" class="hidden min-[750px]:block text-left min-[750px]:w-[181px] min-[1280px]:w-[248px]">
       <div class="text-base text-(--Text-950) font-bold">{{ user.email }}</div>
     </div>
-    <div class="hidden min-[510px]:block col-span-3 text-left">
+    <div v-else class="hidden min-[750px]:block text-left min-[750px]:w-[193px] min-[1280px]:w-[215px]">
+      <div class="text-base text-(--Text-950) font-bold">{{ user.email }}</div>
+    </div>
+    
+    <div v-if="!user.blocked" class="hidden min-[750px]:block text-left min-[750px]:w-[181px] min-[1280px]:w-[248px]">
       <div class="text-base text-(--Text-950) font-bold">{{ user.phone }}</div>
     </div>
-    <div v-if="!user.blocked" class="hidden min-[510px]:flex col-span-1 items-center justify-end gap-4">
+    <div v-else class="hidden min-[750px]:block text-left min-[750px]:w-[193px] min-[1280px]:w-[215px]">
+      <div class="text-base text-(--Text-950) font-bold">{{ user.phone }}</div>
+    </div>
+    
+    <div v-if="!user.blocked" class="hidden min-[750px]:flex items-center justify-end gap-4 min-[750px]:w-[56px] min-[1280px]:w-[56px]">
       <button
         @click="handleEdit"
         class="w-5 h-5 shrink-0 flex items-center justify-center cursor-pointer hover:opacity-70 transition-opacity"
@@ -111,15 +124,26 @@ const handleUnblockConfirm = () => {
       </button>
     </div>
     
-    <div v-else class="hidden min-[510px]:flex col-span-1 items-center justify-end">
-      <button
-        @click="handleUnblock"
-        class="px-3.5 py-2 bg-(--Base-White) border border-(--border) rounded-lg text-sm font-semibold text-(--Brand-950) hover:opacity-70 transition-opacity flex items-center gap-2"
-      >
-        <img src="/image/cabinet/reverse-left.svg" alt="Восстановить" class="w-5 h-5 shrink-0">
-        Восстановить
-      </button>
-    </div>
+    <template v-if="user.blocked">
+      <div class="hidden min-[750px]:flex min-[1280px]:hidden items-center justify-end w-[20px]">
+        <button
+          @click="handleUnblock"
+          class="w-5 h-5 shrink-0 items-center justify-center cursor-pointer hover:opacity-70 transition-opacity flex"
+        >
+          <img src="/image/cabinet/reverse-left.svg" alt="Восстановить" class="w-5 h-5 shrink-0">
+        </button>
+      </div>
+      
+      <div class="hidden min-[1280px]:flex items-center justify-end w-[154px]">
+        <button
+          @click="handleUnblock"
+          class="px-3.5 py-2 bg-(--Base-White) border border-(--border) rounded-lg text-sm font-semibold text-(--Brand-950) hover:opacity-70 transition-opacity flex items-center gap-2"
+        >
+          <img src="/image/cabinet/reverse-left.svg" alt="Восстановить" class="w-5 h-5 shrink-0">
+          Восстановить
+        </button>
+      </div>
+    </template>
 
     <ModalBlockUser
       ref="blockModalRef"

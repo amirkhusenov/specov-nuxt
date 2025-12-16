@@ -1,57 +1,5 @@
 <script setup lang="ts">
-const products = [
-  { article: '67502', name: 'Ведро гибкое сверхпрочно...', image: '/image/products/img-13.png', quantity: 80, pricePerUnit: 217.60, sum: 25600.00, discount: 32, toPay: 17408.00 },
-  { article: '80881', name: 'Валик для внутренних раб...', image: '/image/products/img-14.png', quantity: 30, pricePerUnit: 134.94, sum: 5190.00, discount: 22, toPay: 4048.20 },
-  { article: '85510', name: 'Шпательная лопатка из не...', image: '/image/products/img-15.png', quantity: 20, pricePerUnit: 127.56, sum: 3270.80, discount: 22, toPay: 2551.20 },
-]
-
-const orders = [
-  {
-    id: '481439875',
-    date: '15 августа',
-    productCount: 2,
-    user: 'Волосникова Мария',
-    email: null,
-    total: 9874.92,
-    status: 'Готов к выдаче',
-    statusColor: 'green',
-    products: products
-  },
-  {
-    id: '481439875',
-    date: '15 августа',
-    productCount: 13,
-    user: null,
-    email: 'mari_143@mail.ru',
-    total: 9874.92,
-    status: 'Готов к выдаче',
-    statusColor: 'green',
-    products: products
-  },
-  {
-    id: '481439875',
-    date: '15 августа',
-    productCount: 3,
-    user: null,
-    email: 'mari_143@mail.ru',
-    total: 9874.92,
-    status: 'Готов к выдаче',
-    statusColor: 'green',
-    products: products
-  },
-  {
-    id: '481439875',
-    date: '15 августа',
-    productCount: 13,
-    user: null,
-    email: 'mari_143@mail.ru',
-    total: 9874.92,
-    status: 'Готов к выдаче',
-    statusColor: 'green',
-    showRepeatButton: true,
-    products: products
-  },
-]
+const cabinetStore = useCabinetStore()
 </script>
 
 <template>
@@ -106,7 +54,7 @@ const orders = [
 
               <div class="flex flex-col gap-2">
                 <OrdersCards 
-                  v-for="(order, index) in orders" 
+                  v-for="(order, index) in cabinetStore.ordersWithProducts" 
                   :key="index" 
                   :order="order" 
                   :index="index" 

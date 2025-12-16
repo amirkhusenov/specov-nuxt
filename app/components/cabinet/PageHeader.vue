@@ -6,6 +6,7 @@ interface Props {
   addButtonText?: string
   addButtonBreakpoint?: string
   addButtonClass?: string
+  addButtonIcon?: string
   showNotifications?: boolean
 }
 
@@ -63,7 +64,13 @@ const handleNotifications = () => {
           addButtonClass || 'px-4 py-2.5'
         ]"
       >
-        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <template v-if="addButtonIcon">
+          <svg class="min-[510px]:hidden" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M10 4.16667V15.8333M4.16667 10H15.8333" stroke="currentColor" stroke-width="1.66667" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <img :src="addButtonIcon" alt="" class="hidden min-[510px]:block w-5 h-5 brightness-0 invert">
+        </template>
+        <svg v-else width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M10 4.16667V15.8333M4.16667 10H15.8333" stroke="currentColor" stroke-width="1.66667" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
         <span :class="['hidden', addButtonBreakpoint]">{{ addButtonText }}</span>

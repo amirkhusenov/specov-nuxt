@@ -1,30 +1,5 @@
 <script setup lang="ts">
-const promocodes = [
-  {
-    title: '-30% на первый заказ для юрлиц',
-    date: 'до 31 августа',
-    condition: 'на заказ от 500₽',
-    description: 'Максимальная скидка по промокоду — 3000 рублей. Суммируется с другими акциями',
-    code: 'GET400',
-    label: 'Промокод'
-  },
-  {
-    title: 'Скидка 5% на выделенные бренды',
-    date: 'до 31 августа',
-    condition: '',
-    description: 'Максимальная скидка по промокоду — 5000 рублей. Суммируется с другими акциями. Не действует на заказы юрлиц. Список брендов: Inforce, Gigant, Grizzly, AEG, Ryobi, KEYANG, SHTOK, DCA, Atlet, NEO Tools, Topex, Top Tools, Graphite, QBRICK, KENDO, Mundial, Richip, Sata, Sjal, Senci, Bucktool, X-MAX, EX KASEI, TRUEGREEN, LIFAN, Richip, Worten.',
-    code: 'PROMO5000',
-    label: 'Промокод'
-  },
-  {
-    title: '-3000 рублей на первый заказ от 10 000 рублей для b2b-клиента',
-    date: 'до 31 августа',
-    condition: 'для заказов от 10 000 до 29 999 рублей',
-    description: 'Оформите заказ на сумму от 10 000 до 29 999 рублей и получите выгоду.',
-    code: 'B2B3000',
-    label: 'Промокод'
-  }
-]
+const cabinetStore = useCabinetStore()
 
 const copyPromocode = (code: string) => {
   navigator.clipboard.writeText(code)
@@ -51,7 +26,7 @@ const usePromocode = (code: string) => {
 
             <div class="flex flex-col gap-4 min-[510px]:gap-6">
               <PromocodeCard 
-                v-for="(promo, index) in promocodes" 
+                v-for="(promo, index) in cabinetStore.promocodes" 
                 :key="index"
                 :promo="promo"
                 @copy="copyPromocode"
