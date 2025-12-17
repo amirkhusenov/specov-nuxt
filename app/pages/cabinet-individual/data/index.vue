@@ -22,11 +22,9 @@ const notificationText = ref('')
 const notificationIcon = ref('')
 
 const handleEditPhone = () => {
-  // Handled by ContactDataForm component
 }
 
 const handleEditEmail = () => {
-  // Handled by ContactDataForm component
 }
 
 const handleGetCode = (value: string) => {

@@ -29,7 +29,17 @@ const handleNewAppeal = () => {
 
             <div class="flex flex-col xl:flex-row justify-between gap-4 min-[510px]:gap-6">
               <div class="w-full xl:w-[590px] flex flex-col gap-4 min-[510px]:gap-6">
-                <CompanyCard :company="cabinetStore.company" />
+                <div class="bg-(--Base-White) rounded-xl p-5">
+                  <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 bg-(--Background) rounded-lg flex items-center justify-center">
+                      <img src="/image/cabinet/user-square.svg" alt="">
+                    </div>
+                    <div>
+                      <div class="font-semibold text-(--Text-950)">Кирилл</div>
+                      <div class="text-sm text-(--Text-600)">+7 (999) 999-99-99</div>
+                    </div>
+                  </div>
+                </div>
 
                 <CreditDebtCard 
                   :credit="cabinetStore.credit" 

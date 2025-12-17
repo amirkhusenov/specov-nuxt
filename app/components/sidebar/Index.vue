@@ -12,7 +12,6 @@ const basePath = computed(() => {
     return '/cabinet-corporate'
   }
 
-  // Fallback, можно скорректировать при необходимости
   return '/cabinet-individual'
 })
 
