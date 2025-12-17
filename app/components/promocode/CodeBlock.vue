@@ -15,13 +15,6 @@ const handleCopy = async () => {
     emit('copy', props.code)
   } catch (err) {
     console.error('Failed to copy code:', err)
-    const textArea = document.createElement('textarea')
-    textArea.value = props.code
-    textArea.style.position = 'fixed'
-    textArea.style.opacity = '0'
-    document.body.appendChild(textArea)
-    textArea.select()
-    document.body.removeChild(textArea)
   }
 }
 

@@ -92,7 +92,7 @@ const handleCloseNotification = () => {
             <template v-else>
               <CabinetPageHeader 
                 title="Пользователи" 
-                back-to="/cabinet/navigation"
+                back-to="/cabinet-individual/navigation"
                 :add-button-text="'Добавить пользователя'"
                 @add="handleAddUser"
               />

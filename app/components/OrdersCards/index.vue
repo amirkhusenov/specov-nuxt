@@ -23,10 +23,15 @@ interface Order {
   products: Product[]
 }
 
-const props = defineProps<{
+const route = useRoute()
+
+const props = withDefaults(defineProps<{
   order: Order
   index: number
-}>()
+  showUserColumn?: boolean
+}>(), {
+  showUserColumn: true
+})
 
 const isExpanded = ref(false)
 
@@ -37,6 +42,26 @@ const toggleOrder = () => {
 const formatPrice = (price: number) => {
   return price.toLocaleString('ru-RU', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' ₽'
 }
+
+const basePath = computed(() => {
+  const currentPath = route.path.replace(/\/$/, '') || '/'
+
+  if (currentPath.startsWith('/cabinet-individual')) {
+    return '/cabinet-individual'
+  }
+
+  if (currentPath.startsWith('/cabinet-corporate')) {
+    return '/cabinet-corporate'
+  }
+
+  return '/cabinet-individual'
+})
+
+const desktopGridClass = computed(() => {
+  return props.showUserColumn
+    ? 'grid-cols-[120px_1fr_1fr_180px_40px] xl:grid-cols-[160px_1fr_1fr_180px_40px]'
+    : 'grid-cols-[120px_1fr_180px_40px] xl:grid-cols-[160px_1fr_180px_40px]'
+})
 </script>
 
 <template>
@@ -45,7 +70,8 @@ const formatPrice = (price: number) => {
     :class="isExpanded ? 'border border-(--border)' : ''"
   >
     <div 
-      class="hidden min-[870px]:grid grid-cols-[120px_1fr_1fr_180px_40px] xl:grid-cols-[160px_1fr_1fr_180px_40px] gap-2 md:gap-4 px-4 py-4 items-center cursor-pointer hover:bg-[#eaeaea] transition-colors rounded-lg"
+      class="hidden min-[870px]:grid gap-2 md:gap-4 px-4 py-4 items-center cursor-pointer hover:bg-[#eaeaea] transition-colors rounded-lg"
+      :class="desktopGridClass"
       @click="toggleOrder"
     >
       <div>
@@ -56,7 +82,10 @@ const formatPrice = (price: number) => {
         <img src="/image/sidebar/shopping-bag.svg" alt="" class="w-5 h-5">
         <span class="text-sm text-(--Text-950)">{{ order.productCount }} {{ order.productCount === 1 ? 'товар' : order.productCount < 5 ? 'товара' : 'товаров' }}</span>
       </div>
-      <div class="flex items-center gap-2">
+      <div 
+        v-if="showUserColumn"
+        class="flex items-center gap-2"
+      >
         <img src="/image/cabinet/user.svg" alt="" class="w-5 h-5">
         <span class="text-sm text-(--Text-950)">{{ order.user || order.email }}</span>
       </div>
@@ -105,7 +134,10 @@ const formatPrice = (price: number) => {
         </div>
       </div>
 
-      <div class="flex items-center gap-2 mb-3">
+      <div
+        v-if="showUserColumn"
+        class="flex items-center gap-2 mb-3"
+      >
         <img src="/image/cabinet/user.svg" alt="" class="w-5 h-5">
         <span class="text-sm text-(--Text-950)">{{ order.user || order.email }}</span>
       </div>
@@ -117,7 +149,7 @@ const formatPrice = (price: number) => {
 
       <NuxtLink 
         v-if="!isExpanded"
-        :to="`/cabinet/orders/${order.id}`"
+        :to="`${basePath}/orders/${order.id}`"
         class="w-full py-3 px-4 border border-(--border) rounded-lg text-sm font-semibold text-(--Brand-950) flex items-center justify-center gap-2 hover:bg-(--Background) transition-colors"
       >
         Смотреть товары

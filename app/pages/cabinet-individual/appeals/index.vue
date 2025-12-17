@@ -37,9 +37,9 @@ const handleSubmitForm = (data: { topic: string; message: string; files: File[] 
               />
             </template>
             <template v-else>
-              <CabinetPageHeader 
-                title="Обращения" 
-                back-to="/cabinet/navigation"
+              <CabinetPageHeader
+                title="Обращения"
+                back-to="/cabinet-individual/navigation"
                 add-button-text="Новое обращение"
                 add-button-icon="/image/sidebar/annotation-dots.svg"
                 @add="handleNewAppeal"

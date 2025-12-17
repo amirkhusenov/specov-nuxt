@@ -65,7 +65,7 @@ const formatPrice = (price: number) => {
 }
 
 const goBack = () => {
-  router.push('/cabinet/orders')
+  router.push('/cabinet-corporate/orders')
 }
 </script>
 

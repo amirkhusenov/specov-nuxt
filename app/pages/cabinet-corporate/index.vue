@@ -25,7 +25,7 @@ const handleNewAppeal = () => {
           </div>
 
           <div class="flex-1 flex flex-col gap-4 min-[510px]:gap-6">
-            <CabinetPageHeader title="Кабинет" back-to="/cabinet/navigation" />
+            <CabinetPageHeader title="Кабинет" back-to="/cabinet-corporate/navigation" />
 
             <div class="flex flex-col xl:flex-row justify-between gap-4 min-[510px]:gap-6">
               <div class="w-full xl:w-[590px] flex flex-col gap-4 min-[510px]:gap-6">

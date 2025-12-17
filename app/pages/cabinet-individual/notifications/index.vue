@@ -15,7 +15,7 @@
           <div class="flex-1 flex flex-col gap-4 min-[750px]:gap-6">
             <CabinetPageHeader 
               title="Уведомления о статусах заказов" 
-              back-to="/cabinet/navigation"
+              back-to="/cabinet-individual/navigation"
             />
 
             <CabinetNotificationSettings />

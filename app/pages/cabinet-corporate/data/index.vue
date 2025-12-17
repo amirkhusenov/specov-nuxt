@@ -60,7 +60,7 @@ const handleSavePassword = () => {
           </div>
 
           <div class="flex-1 flex flex-col gap-4 min-[510px]:gap-6">
-            <CabinetPageHeader title="Мои данные" back-to="/cabinet/navigation" />
+            <CabinetPageHeader title="Мои данные" back-to="/cabinet-corporate/navigation" />
 
             <div class="flex flex-col gap-4 min-[510px]:gap-6 w-full xl:max-w-[590px]">
               <ContactDataForm 

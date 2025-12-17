@@ -6,6 +6,8 @@ interface Props {
   formatPrice: (price: number) => string
 }
 
+const route = useRoute()
+
 defineProps<Props>()
 </script>
 
@@ -18,7 +20,7 @@ defineProps<Props>()
         </div>
         <h3 class="text-lg font-bold text-(--Text-950)">Заказы</h3>
       </div>
-      <NuxtLink to="/cabinet/orders" class="flex items-center gap-1 text-sm text-(--Text-950) font-semibold border border-(--border) py-2 px-4 bg-(--Background) rounded-lg">
+      <NuxtLink :to="`${route.path.startsWith('/cabinet-corporate') ? '/cabinet-corporate' : '/cabinet-individual'}/orders`" class="flex items-center gap-1 text-sm text-(--Text-950) font-semibold border border-(--border) py-2 px-4 bg-(--Background) rounded-lg">
         Все
         <img src="/image/cabinet/arrow-right.svg" alt="">
       </NuxtLink>

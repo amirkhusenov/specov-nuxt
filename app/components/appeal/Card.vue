@@ -5,7 +5,9 @@ interface Props {
   appeal: Appeal
 }
 
-defineProps<Props>()
+const route = useRoute()
+
+const props = defineProps<Props>()
 
 const getStatusColor = (status: string) => {
   return status === 'В работе' ? 'text-(--Success-700)' : 'text-(--Text-600)'
@@ -18,7 +20,7 @@ const getDotColor = (status: string) => {
 
 <template>
   <NuxtLink 
-    :to="`/cabinet/appeals/${appeal.id}`"
+    :to="`${route.path.startsWith('/cabinet-corporate') ? '/cabinet-corporate' : '/cabinet-individual'}/appeals/${appeal.id}`"
     class="block bg-(--Background) rounded-xl p-5 cursor-pointer hover:bg-(--Background)/80 transition-colors"
   >
     <div class="flex items-center justify-between mb-6">

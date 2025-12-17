@@ -52,9 +52,9 @@ onUnmounted(() => {
       v-if="show"
       class="fixed left-6 bottom-6 max-[1024px]:bottom-26 max-[510px]:left-0 max-[510px]:right-0 max-[510px]:bottom-21.5 max-[510px]:w-full max-[510px]:px-4 z-2"
     >
-      <div class="flex items-center gap-3 p-6 bg-(--Brand-700) text-white rounded-lg shadow-lg">
+      <div class="flex items-center max-[510px]:justify-center gap-3 p-6 bg-(--Brand-700) text-white rounded-lg shadow-lg">
         <img :src="icon" alt="" class="w-5 h-5 brightness-0 invert">
-        <span class="text-sm font-medium">{{ text }}</span>
+        <span class="text-sm font-medium max-[510px]:text-center">{{ text }}</span>
       </div>
     </div>
   </Transition>

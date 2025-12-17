@@ -16,7 +16,7 @@ const cabinetStore = useCabinetStore()
           <div class="flex-1 flex flex-col gap-4 min-[510px]:gap-6">
             <CabinetPageHeader 
               title="Заказы" 
-              back-to="/cabinet/navigation"
+              back-to="/cabinet-individual/navigation"
               add-button-text="Новый заказ"
               add-button-breakpoint="min-[870px]:inline"
               add-button-class="p-3 min-[870px]:px-4 min-[870px]:py-3"
@@ -44,10 +44,9 @@ const cabinetStore = useCabinetStore()
                 </svg>
               </div>
 
-              <div class="hidden md:grid grid-cols-[120px_1fr_1fr_180px_40px] xl:grid-cols-[160px_1fr_1fr_180px_40px] gap-4 px-4 py-3 text-sm text-(--Text-600) mb-2">
+              <div class="hidden md:grid grid-cols-[120px_1fr_180px_40px] xl:grid-cols-[160px_1fr_180px_40px] gap-4 px-4 py-3 text-sm text-(--Text-600) mb-2">
                 <div>Заказ</div>
                 <div>Кол-во товаров</div>
-                <div>Пользователь</div>
                 <div class="text-right">Сумма и статус</div>
                 <div></div>
               </div>
@@ -57,7 +56,8 @@ const cabinetStore = useCabinetStore()
                   v-for="(order, index) in cabinetStore.ordersWithProducts" 
                   :key="index" 
                   :order="order" 
-                  :index="index" 
+                  :index="index"
+                  :show-user-column="false"
                 />
               </div>
             </div>

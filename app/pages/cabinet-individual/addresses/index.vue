@@ -3,9 +3,12 @@ const cabinetStore = useCabinetStore()
 
 const showAddForm = ref(false)
 const showNotification = ref(false)
+const notificationText = ref('')
 
 const handleDelete = (addressId: string) => {
   cabinetStore.deleteAddress(addressId)
+  notificationText.value = 'Адрес доставки был удален'
+  showNotification.value = true
 }
 
 const handleEdit = () => {
@@ -66,6 +69,7 @@ const handleFormSubmit = (data: { address: string; office: string; entrance: str
   })
 
   showAddForm.value = false
+  notificationText.value = 'Новый адрес добавлен'
   showNotification.value = true
 }
 
@@ -99,7 +103,7 @@ const handleFormCancel = () => {
             <CabinetPageHeader 
               v-else
               title="Адреса доставки" 
-              back-to="/cabinet/navigation"
+              back-to="/cabinet-individual/navigation"
               add-button-text="Добавить адрес"
               @add="handleAddAddress"
             />
@@ -128,10 +132,11 @@ const handleFormCancel = () => {
       </div>
     </main>
 
-    <!-- Уведомление о добавлении адреса -->
+    <!-- Уведомление о добавлении/удалении адреса -->
     <Notification
       :show="showNotification"
-      text="Новый адрес добавлен"
+      :text="notificationText"
+      icon="/image/sidebar/marker.svg"
       @close="showNotification = false"
     />
   </div>

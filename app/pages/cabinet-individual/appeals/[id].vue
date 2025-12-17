@@ -12,6 +12,7 @@ const messageText = ref('')
 const rating = ref(0)
 const hoveredRating = ref(0)
 const ratingSubmitted = ref(false)
+const showRatingNotification = ref(false)
 
 const getStatusColor = (status: string) => {
   return status === 'В работе' ? 'text-(--Success-700)' : 'text-(--Text-600)'
@@ -32,6 +33,7 @@ const handleSubmitRating = () => {
   if (rating.value > 0) {
     console.log('Rating submitted:', rating.value)
     ratingSubmitted.value = true
+    showRatingNotification.value = true
   }
 }
 
@@ -58,7 +60,7 @@ const isStarActive = (star: number) => {
           <div class="flex-1 flex flex-col gap-4 min-[750px]:gap-6">
             <div v-if="appeal">
               <NuxtLink 
-                to="/cabinet/appeals"
+                to="/cabinet-individual/appeals"
                 class="flex items-center gap-1.5 text-sm text-(--Text-600) hover:text-(--Text-950) transition-colors mb-4"
               >
                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
@@ -171,7 +173,7 @@ const isStarActive = (star: number) => {
             <div v-else class="bg-(--Base-White) rounded-xl p-5 text-center">
               <p class="text-sm text-(--Text-600)">Обращение не найдено</p>
               <NuxtLink 
-                to="/cabinet/appeals"
+                to="/cabinet-individual/appeals"
                 class="inline-block mt-4 text-sm text-(--Brand-600) hover:text-(--Brand-700) transition-colors"
               >
                 Вернуться к списку обращений
@@ -183,9 +185,10 @@ const isStarActive = (star: number) => {
     </main>
 
     <Notification
-      :show="ratingSubmitted"
+      :show="showRatingNotification"
       text="Спасибо за оценку"
       icon="/image/cabinet/heart-rounded.svg"
+      @close="showRatingNotification = false"
     />
   </div>
 </template>
